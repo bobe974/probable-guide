@@ -2,29 +2,27 @@ import Counter from "./counter";
 import { Component } from "react";
 import React from "react";
 class Counters extends Component {
- 
   render() {
-    console.log("props " + this.props);
+    const { onIncrement, onDecrement, onDelete, counters, onReset } = this.props;
     return (
       <React.Fragment>
-        <button
-          onClick={this.props.onReset}
-          className="btn btn-primary btm-sm m-2"
-        >
+        <button onClick={onReset} className="btn btn-primary btn-sm m-2">
           Reset
         </button>
-        <ul>
-          {this.props.counters.map((counter) => (
-            <li>
-              <Counter
-                key={counter.id}
-                onIncrement={this.props.onIncrement}
-                ondelete={this.props.onDelete}
-                counter={counter}
-              ></Counter>
-            </li>
+        <div className="container">
+          {counters.map((counter) => (
+            <div className="row mb-2" key={counter.id}>
+              <div className="col">
+                <Counter
+                  onIncrement={onIncrement}
+                  onDecrement={onDecrement}
+                  ondelete={onDelete}
+                  counter={counter}
+                />
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </React.Fragment>
     );
   }

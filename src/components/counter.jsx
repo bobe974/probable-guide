@@ -3,7 +3,6 @@ import { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class Counter extends Component {
-
   styles = {
     fontSize: 30,
     fontWeight: "bold",
@@ -29,15 +28,22 @@ class Counter extends Component {
         </span>
         <button
           onClick={() => this.props.onIncrement(this.props.counter)}
-          className="btn btn-secondary"
+          className="btn btn-secondary btm-sm m-2"
         >
-          Increment
+          +
+        </button>
+        <button
+          onClick={() => this.props.onDecrement(this.props.counter)}
+          className="btn btn-secondary btm-sm m-2"
+          disabled={this.props.counter.value === 0}
+        >
+          -
         </button>
         <button
           onClick={() => this.props.ondelete(this.props.counter.id)}
           className="btn btn-danger btm-sm m-2"
         >
-          Delete
+          X
         </button>
       </React.Fragment>
     );
@@ -51,7 +57,7 @@ class Counter extends Component {
 
   formatCount() {
     const value = this.props.counter.value;
-    return value === 0 ? <h1>zero</h1> : value;
+    return value === 0 ? <p>zero</p> : value;
   }
 }
 
